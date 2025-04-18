@@ -1,33 +1,27 @@
-// server.js
-
 const express = require("express");
+const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3000;
-const path = require("path");
 
+// Serve static files (like index.html)
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Root route
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
-//root
-app.get('/', (req, res) => {
-    // your nav bar is on index.html
-    res.sendFile(path.join(__dirname, 'public', 'index.html'))
-})
-
-
-// Route for Climate Crisis
+// Redirects to GitHub repos
 app.get("/climate-crisis", (req, res) => {
-  //TODO add code!
+  res.redirect("https://github.com/jdelacruz23/group-project-1-g10");
 });
 
-// Route for Typesetting
 app.get("/typesetting", (req, res) => {
-  //TODO add code
+  res.redirect("https://github.com/GalvinHa/typesettingHW");
 });
 
-// Route for Four Algorithms
 app.get("/four-algorithms", (req, res) => {
-  //TODO add code
+  res.redirect("https://github.com/GalvinHa/four-sorting-algo-phase-1");
 });
 
 // Start the server
